@@ -18,12 +18,11 @@ class population(object):
         print('--NEW POPULATION--')
         for i in self.newPopulation:
             i.toString()
-        # print('--OLD POPULATION--')
-        # for i in self.oldPopulation:
-        #     i.toString()
+        print('--OLD POPULATION--')
+        for i in self.oldPopulation:
+            i.toString()
 
     def reproduce(self):
-        
         bestFited = []
         populationPivot = round((self.populationSize / 10) * 9)
         self.oldPopulation = self.newPopulation
@@ -42,7 +41,6 @@ class population(object):
                             self.oldPopulation[indexB])
             self.newPopulation.append(s)
         self.newPopulation.sort(key=lambda x: x.getFitnes(), reverse=True)
-        print(len(self.newPopulation))
 
     def getBestFited(self):
         return self.newPopulation[0]
@@ -51,4 +49,4 @@ class population(object):
         sumFitnes = 0.0
         for i in self.newPopulation:
             sumFitnes += i.getFitnes()
-        return sumFitnes / self.populationSize
+        return round(sumFitnes / self.populationSize, 2)

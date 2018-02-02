@@ -2,12 +2,13 @@ from utils import generateRandomSolution
 from solution import *
 
 class population(object):
-    """docstring for population"""
+
     def __init__(self, size):
         super(population, self).__init__()
         self.populationSize = size
         self.newPopulation = []
         self.oldPopulation = []
+        self.livenes = 200
         for i in range(self.populationSize):
             s = solution()
             self.newPopulation.append(solution())
@@ -22,22 +23,32 @@ class population(object):
         #     i.toString()
 
     def reproduce(self):
-        populationPivot = round((self.populationSize / 4) * 3)
+        
+        bestFited = []
+        populationPivot = round((self.populationSize / 10) * 9)
         self.oldPopulation = self.newPopulation
         self.newPopulation = []
-        for i in range(0, self.populationSize):
-            # if(i < populationPivot):
+        for i in range(self.livenes):
+            for j in range(int(self.oldPopulation[i].getFitnes())):
+                bestFited.append(i)
+        for a in range(0, self.populationSize):
             s = solution()
-            indexA = randomInt(0, populationPivot)
-            indexB = randomInt(0, populationPivot)
-            # if(indexA != indexB):
+            indexA = bestFited[randomInt(0, len(bestFited) - 1)]
+            indexB = bestFited[randomInt(0, len(bestFited) - 1)]
+            while indexA == indexB:
+                indexB = bestFited[randomInt(0, len(bestFited) - 1)]
+                pass
             s.reproduce(self.oldPopulation[indexA], 
                             self.oldPopulation[indexB])
             self.newPopulation.append(s)
-            # else:
-            #     s = solution()
-            #     self.newPopulation.append(s)
         self.newPopulation.sort(key=lambda x: x.getFitnes(), reverse=True)
+        print(len(self.newPopulation))
 
     def getBestFited(self):
         return self.newPopulation[0]
+
+    def averageFitnes(self):
+        sumFitnes = 0.0
+        for i in self.newPopulation:
+            sumFitnes += i.getFitnes()
+        return sumFitnes / self.populationSize

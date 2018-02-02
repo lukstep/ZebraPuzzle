@@ -8,36 +8,38 @@ class solution(object):
         self.solution = generateRandomSolution()
         self.fitnes = 0.0
         self.hasLivesJet = False
-        self.mutationProbabily = 50
+        self.mutationProbabily = 300
+        self.numberOfMuation = 3
 
     def toString(self):
         printSolution(self.solution)
         print('Fitnes {fitnes}'.format(fitnes=self.fitnes))
 
     def mutate(self):
-        for i in range(8):
-            tempValueIndex = randomInt(0,4)
-            newIndex = randomInt(0,4)
-            if(newIndex != tempValueIndex):
-                keyToMutate = key[randomInt(0, lastIndex(key))]
-                tempValue = self.solution[tempValueIndex][keyToMutate]
-                self.solution[tempValueIndex][keyToMutate] = self.solution[newIndex][keyToMutate]
-                self.solution[newIndex][keyToMutate] = tempValue
-                # print((keyToMutate, tempValue))
-                return True
-        return False
+        tempValueIndex = randomInt(0, lastIndex(key))
+        newIndex = randomInt(0, lastIndex(key))
+        while tempValueIndex == newIndex:
+            newIndex = randomInt(0, lastIndex(key))
+            pass
+        if(newIndex != tempValueIndex):
+            keyToMutate = key[randomInt(0, lastIndex(key))]
+            tempValue = self.solution[tempValueIndex][keyToMutate]
+            self.solution[tempValueIndex][keyToMutate] = self.solution[newIndex][keyToMutate]
+            self.solution[newIndex][keyToMutate] = tempValue
+            return True
 
     def reproduce(self, solutionA, solutionB):
         for i in key:
             pivot = randomInt(0, 100)
-            for j in range(5):
+            for j in range(0, 5):
                 if(pivot < 50):
                     tempSolution = solutionA.getSolutionTab()
                 else:
                     tempSolution = solutionB.getSolutionTab()
                 self.solution[j][i] = tempSolution[j][i]
-        if(randomInt(1,1000) < self.mutationProbabily):
-            self.mutate()
+        if(randomInt(1, 1000) <= self.mutationProbabily):
+            for i in range(self.numberOfMuation):
+                    self.mutate()
 
     def checkRule(self, key1, value1, key2, value2):
         for i in self.solution:
@@ -48,18 +50,29 @@ class solution(object):
     def checkRule2(self, key1, value1, key2, value2):
         number = 0
         for i in range(0, 5):
-            if(self.solution[i][key1] == value1):
-                if((i + 1) % 5):
-                    if(self.solution[(i + 1)][key2] == value2):
+            if self.solution[i][key1] == value1 :
+                if (i + 1) % 5 :
+                    if self.solution[(i + 1)][key2] == value2 :
                         return True
         return False
 
+    def checkRule3(self, key):
+        valueList = getList(key)
+        for j in valueList:
+            number = 0
+            for i in range(5):
+                if(self.solution[i][key] == j):
+                    number += 1
+            if (number > 1):
+                return False
+        return True
+
     def getFitnes(self):
-        if(self.hasLivesJet == False):
-            self.live()
+        if self.hasLivesJet == False :
+            self.test()
         return self.fitnes
 
-    def live(self):
+    def test(self):
         sum = 0
         #The Englishman lives in the red house.
         if(self.checkRule('nation', 'Englishman', 'color', 'Red')):
@@ -74,7 +87,7 @@ class solution(object):
         else:
             sum -= 1
         #Coffee is drunk in the green house.
-        if(self.checkRule('drink', 'Coffee', 'color', 'Green')):
+        if(self.checkRule('drink', 'Coffe', 'color', 'Green')):
             # print('Coffee is drunk in the green house.')
             sum += 1
         else:
@@ -116,7 +129,7 @@ class solution(object):
         else:
             sum -= 1
         #The man who smokes Chesterfields lives in the house next to the man with the fox
-        if(self.checkRule2("pet", "Fox", "smoke", "Chesterfields")):
+        if(self.checkRule2("pet", "Fox", "smoke", "Chesterfield")):
             # print('The man who smokes Chesterfields lives in the house next to the man with the fox')
             sum += 1
         else:
@@ -145,9 +158,9 @@ class solution(object):
             sum += 1
         else:
             sum -= 1
+
         self.fitnes = round((sum / 14) * 100, 2)
         self.hasLivesJet = True
-        # print(sum)
 
     def getSolutionTab(self):
         return self.solution

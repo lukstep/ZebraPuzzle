@@ -4,10 +4,11 @@ from population import *
 
 def run():
     p = population(100000)
-    for i in range(1000000):
+    for i in range(100):
         p.reproduce()
         best = p.getBestFited()
-        print('Generation: {generation} best fitnes: {fitnes}'.format(generation=i, fitnes=best.getFitnes()))
+        print('Generation: {generation} best fitnes: {fitnes}, average fitnes: {avg}'.format(generation=i, fitnes=best.getFitnes(), avg=p.averageFitnes()))
+        best.toString()
         if(best.getFitnes() > 90):
             print('---BEST SOLUTION---')
             best.toString()

@@ -24,13 +24,12 @@ class population(object):
 
     def reproduce(self):
         bestFited = []
-        populationPivot = round((self.populationSize / 10) * 9)
         self.oldPopulation = self.newPopulation
         self.newPopulation = []
         for i in range(self.livenes):
             for j in range(int(self.oldPopulation[i].getFitnes())):
                 bestFited.append(i)
-        for a in range(0, self.populationSize):
+        for i in range(0, self.populationSize):
             s = solution()
             indexA = bestFited[randomInt(0, len(bestFited) - 1)]
             indexB = bestFited[randomInt(0, len(bestFited) - 1)]
@@ -45,7 +44,7 @@ class population(object):
     def getBestFited(self):
         return self.newPopulation[0]
 
-    def averageFitnes(self):
+    def getAverageFitnes(self):
         sumFitnes = 0.0
         for i in self.newPopulation:
             sumFitnes += i.getFitnes()

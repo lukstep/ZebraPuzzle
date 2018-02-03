@@ -30,10 +30,20 @@ class TestSolution(unittest.TestCase):
         s.solution = correctSolution
         self.assertTrue(s.checkRule('color', 'Yellow', 'nation', 'Norwegian'))
 
+    def test_CheckRule_incorect(self):
+        s = solution()
+        s.solution = incorrectSolution
+        self.assertFalse(s.checkRule('color', 'Yellow', 'drink', 'Coffe'))
+
     def test_CheckRule2(self):
         s = solution()
         s.solution = correctSolution
         self.assertTrue(s.checkRule2('color', 'Yellow', 'color', 'Blue'))
+
+    def test_CheckRule2_incorect(self):
+        s = solution()
+        s.solution = incorrectSolution
+        self.assertFalse(s.checkRule2('color', 'Yellow', 'color', 'Blue'))
 
     def test_CheckRule3(self):
         s = solution()

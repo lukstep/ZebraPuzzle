@@ -1,4 +1,3 @@
-#!/usr/bin/env python
 import random
 
 def generateRandomSolution():
@@ -24,15 +23,15 @@ def generateRandomSolution():
     return solution
 
 def getList(key):
-    if key == "nation":
+    if(key == "nation"):
         return ([ 'Norwegian', 'Ukrainian', 'Englishman', 'Spaniard', 'Japanese' ])
-    elif key == "color":
+    elif(key == "color"):
         return ([ 'Red', 'Blue', 'Yellow', 'Ivory', 'Green' ])
-    elif key == "drink":
+    elif(key == "drink"):
         return ([ 'Tea', 'Milk', 'Coffe', 'Orange juice', 'Water' ])
-    elif key == "smoke":
+    elif(ey == "smoke"):
         return ([ 'Lucky Strike', 'Old Gold', 'Kools', 'Chesterfield', 'Parliaments'])
-    elif key == "pet":
+    elif(key == "pet"):
         return ([ 'Zebra', 'Fox', 'Horse', 'Snails', 'Dog' ])
 
 def randomInt(min, max):

@@ -1,4 +1,4 @@
 # Zebra Puzzle
-Simple application to resolving Einstein zebra puzzle using genetic algorithm. The script support only python 3.
+Simple application to resolving Einstein zebra puzzle using a genetic algorithm.
 
-To run <code>./zebraPuzzle.py</code>
+To run, call:<code>./zebraPuzzle.py</code>

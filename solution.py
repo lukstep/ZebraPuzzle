@@ -134,7 +134,7 @@ class solution(object):
         else:
             sum -= 1
 
-        self.fitnes = round((sum / 14) * 100, 2)
+        self.fitnes = round((sum / 14) * 100, 3)
         self.hasTestYet = True
 
     def getSolutionTab(self):

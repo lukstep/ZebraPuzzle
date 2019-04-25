@@ -1,5 +1,5 @@
 import unittest
-from solution import *
+from solution import solution
 
 correctSolution = [{'color': 'Yellow', 'nation': 'Norwegian',  'drink': 'Water',        'smoke': 'Kools',         'pet': 'Fox'},
                    {'color': 'Blue',   'nation': 'Ukrainian',  'drink': 'Tea',          'smoke': 'Chesterfield',  'pet': 'Horse'},

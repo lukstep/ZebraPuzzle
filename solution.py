@@ -1,4 +1,6 @@
-from utils import *
+from utils import generateRandomSolution
+from utils import lastIndex
+from utils import randomInt
 
 key = ["nation", "color", "drink", "smoke", "pet"]
 
@@ -11,7 +13,8 @@ class solution(object):
         self.mutationProbabily = 300
 
     def toString(self):
-        printSolution(self.solution)
+        for row in self.solution:
+            print(row)
         print('Fitnes {fitnes}'.format(fitnes=self.fitnes))
 
     def mutate(self):

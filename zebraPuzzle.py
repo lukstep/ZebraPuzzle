@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 import sys
-from population import *
+from population import population
 
 def run():
     populationSize = 100000

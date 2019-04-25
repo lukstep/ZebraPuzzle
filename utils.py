@@ -22,24 +22,8 @@ def generateRandomSolution():
         solution.append(sample)
     return solution
 
-def getList(key):
-    if(key == "nation"):
-        return ([ 'Norwegian', 'Ukrainian', 'Englishman', 'Spaniard', 'Japanese' ])
-    elif(key == "color"):
-        return ([ 'Red', 'Blue', 'Yellow', 'Ivory', 'Green' ])
-    elif(key == "drink"):
-        return ([ 'Tea', 'Milk', 'Coffe', 'Orange juice', 'Water' ])
-    elif(ey == "smoke"):
-        return ([ 'Lucky Strike', 'Old Gold', 'Kools', 'Chesterfield', 'Parliaments'])
-    elif(key == "pet"):
-        return ([ 'Zebra', 'Fox', 'Horse', 'Snails', 'Dog' ])
-
 def randomInt(min, max):
     return int(random.randint(min, max))
 
 def lastIndex(array):
     return len(array) - 1
-
-def printSolution(solution):
-    for x in solution:
-        print(x)

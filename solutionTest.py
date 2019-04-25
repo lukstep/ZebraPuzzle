@@ -35,15 +35,15 @@ class TestSolution(unittest.TestCase):
         s.solution = incorrectSolution
         self.assertFalse(s.checkRule('color', 'Yellow', 'drink', 'Coffe'))
 
-    def test_CheckRule2(self):
+    def test_CheckNeighborhoodRules(self):
         s = solution()
         s.solution = correctSolution
-        self.assertTrue(s.checkRule2('color', 'Yellow', 'color', 'Blue'))
+        self.assertTrue(s.checkNeighborhoodRules('color', 'Yellow', 'color', 'Blue'))
 
-    def test_CheckRule2_incorect(self):
+    def test_CheckNeighborhoodRules_incorect(self):
         s = solution()
         s.solution = incorrectSolution
-        self.assertFalse(s.checkRule2('color', 'Yellow', 'color', 'Blue'))
+        self.assertFalse(s.checkNeighborhoodRules('color', 'Yellow', 'color', 'Blue'))
 
     def test_Reproduce(self):
         solutionA = solution()

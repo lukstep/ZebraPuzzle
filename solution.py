@@ -48,11 +48,11 @@ class solution(object):
                 return True
         return False
 
-    def checkRule2(self, key1, value1, key2, value2):
+    def checkNeighborhoodRules(self, House1_key, House1_value, House2_key, House2_value):
         for i in range(0, 5):
-            if(self.solution[i][key1] == value1):
+            if(self.solution[i][House1_key] == House1_value):
                 if(i + 1) % 5 :
-                    if(self.solution[(i + 1)][key2] == value2):
+                    if(self.solution[(i + 1)][House2_key] == House2_value):
                         return True
         return False
 
@@ -86,7 +86,7 @@ class solution(object):
             sum += 1
         else:
             sum -= 1
-        if(self.checkRule2("color", "Ivory", "color", "Green")):
+        if(self.checkNeighborhoodRules("color", "Ivory", "color", "Green")):
             # print('The green house is immediately to the right of the ivory house')
             sum += 1
         else:
@@ -111,12 +111,12 @@ class solution(object):
             sum += 1
         else:
             sum -= 1
-        if(self.checkRule2("pet", "Fox", "smoke", "Chesterfield")):
+        if(self.checkNeighborhoodRules("pet", "Fox", "smoke", "Chesterfield")):
             # print('The man who smokes Chesterfields lives in the house next to the man with the fox')
             sum += 1
         else:
             sum -=1
-        if(self.checkRule2("smoke", "Kools", "pet", "Horse")):
+        if(self.checkNeighborhoodRules("smoke", "Kools", "pet", "Horse")):
             # print('Kools are smoked in the house next to the house where the horse is kept.')
             sum += 1
         else:
@@ -131,7 +131,7 @@ class solution(object):
             sum += 1
         else:
             sum -= 1
-        if(self.checkRule2("nation", "Norwegian", "color", "Blue")):
+        if(self.checkNeighborhoodRules("nation", "Norwegian", "color", "Blue")):
             # print('The Norwegian lives next to the blue house.')
             sum += 1
         else:

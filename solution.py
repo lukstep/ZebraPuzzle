@@ -15,7 +15,22 @@ class solution(object):
     def toString(self):
         for row in self.solution:
             print(row)
-        print('Fitnes {fitnes}'.format(fitnes=self.fitnes))
+        print('Fitness {fitness}'.format(fitness=self.fitnes))
+
+    def reproduce(self, partnerA, partnerB):
+        for i in key:
+            pivot = randomInt(0, 100)
+            for j in range(0, 5):
+                if(pivot < 50):
+                    tempSolution = partnerA.getSolutionTab()
+                else:
+                    tempSolution = partnerB.getSolutionTab()
+                self.solution[j][i] = tempSolution[j][i]
+        if(self.isMutationPossible()):
+             self.mutate()
+
+    def isMutationPossible(self):
+        return randomInt(1, 1000) <= self.mutationProbabily
 
     def mutate(self):
         tempValueIndex = randomInt(0, lastIndex(key))
@@ -29,35 +44,6 @@ class solution(object):
             self.solution[tempValueIndex][keyToMutate] = self.solution[newIndex][keyToMutate]
             self.solution[newIndex][keyToMutate] = tempValue
             return True
-
-    def reproduce(self, solutionA, solutionB):
-        for i in key:
-            pivot = randomInt(0, 100)
-            for j in range(0, 5):
-                if(pivot < 50):
-                    tempSolution = solutionA.getSolutionTab()
-                else:
-                    tempSolution = solutionB.getSolutionTab()
-                self.solution[j][i] = tempSolution[j][i]
-        if(randomInt(1, 1000) <= self.mutationProbabily):
-             self.mutate()
-
-    def checkSingleHouseRule(self, key1, value1, key2, value2):
-        for i in self.solution:
-            if(i[key1] == value1 and i[key2] == value2):
-                return True
-        return False
-
-    def checkNeighborhoodRules(self, House1_key, House1_value, House2_key, House2_value):
-        for i in range(0, 5):
-            if(self.solution[i][House1_key] == House1_value):
-                if(i + 1) % 5 :
-                    if(self.solution[(i + 1)][House2_key] == House2_value):
-                        return True
-        return False
-
-    def checkRuleForExactHouse(self, house, key, value):
-        return self.solution[house][key] == value
 
     def getFitnes(self):
         if(self.hasTestYet == False):
@@ -126,6 +112,22 @@ class solution(object):
         self.fitnes = round((sum / 14) * 100, 3)
         self.hasTestYet = True
 
+    def checkSingleHouseRule(self, key1, value1, key2, value2):
+        for i in self.solution:
+            if(i[key1] == value1 and i[key2] == value2):
+                return True
+        return False
+
+    def checkNeighborhoodRules(self, House1_key, House1_value, House2_key, House2_value):
+        for i in range(0, 5):
+            if(self.solution[i][House1_key] == House1_value):
+                if(i + 1) % 5 :
+                    if(self.solution[(i + 1)][House2_key] == House2_value):
+                        return True
+        return False
+
+    def checkRuleForExactHouse(self, house, key, value):
+        return self.solution[house][key] == value
+
     def getSolutionTab(self):
         return self.solution
-

@@ -10,9 +10,10 @@ class solution(object):
         self.solution = generateRandomSolution()
         self.fitnes = 0.0
         self.hasTestYet = False
-        self.mutationProbabily = 300
+        self.mutationProbabily = 19 #%
         self.NUMBER_OF_RULES = 14
         self.NUMBER_OF_HOUSES = 5
+        self.MAX_MUTATION_PROBABILITY = 100
 
     def toString(self):
         for row in self.solution:
@@ -32,7 +33,7 @@ class solution(object):
              self.mutate()
 
     def isMutationPossible(self):
-        return randomInt(1, 1000) <= self.mutationProbabily
+        return randomInt(0, self.MAX_MUTATION_PROBABILITY) <= self.mutationProbabily
 
     def mutate(self):
         tempValueIndex = randomInt(0, lastIndex(key))

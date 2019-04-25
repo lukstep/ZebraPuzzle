@@ -42,7 +42,7 @@ class solution(object):
         if(randomInt(1, 1000) <= self.mutationProbabily):
              self.mutate()
 
-    def checkRule(self, key1, value1, key2, value2):
+    def checkSingleHouseRule(self, key1, value1, key2, value2):
         for i in self.solution:
             if(i[key1] == value1 and i[key2] == value2):
                 return True
@@ -66,73 +66,59 @@ class solution(object):
 
     def test(self):
         sum = 0
-        if(self.checkRule('nation', 'Englishman', 'color', 'Red')):
-            # print('The Englishman lives in the red house.')
+        if(self.checkSingleHouseRule('nation', 'Englishman', 'color', 'Red')):
             sum += 1
         else:
             sum -= 1
-        if(self.checkRule('nation', 'Spaniard', 'pet', 'Dog')):
-            # print('The Spaniard owns the dog.')
+        if(self.checkSingleHouseRule('nation', 'Spaniard', 'pet', 'Dog')):
             sum += 1
         else:
             sum -= 1
-        if(self.checkRule('drink', 'Coffe', 'color', 'Green')):
-            # print('Coffee is drunk in the green house.')
+        if(self.checkSingleHouseRule('drink', 'Coffe', 'color', 'Green')):
             sum += 1
         else:
             sum -= 1
-        if(self.checkRule("nation", "Ukrainian", "drink", "Tea")):
-            # print('The Ukrainian drinks tea.')
+        if(self.checkSingleHouseRule("nation", "Ukrainian", "drink", "Tea")):
             sum += 1
         else:
             sum -= 1
         if(self.checkNeighborhoodRules("color", "Ivory", "color", "Green")):
-            # print('The green house is immediately to the right of the ivory house')
             sum += 1
         else:
             sum -= 1
-        if(self.checkRule("smoke", "Old Gold", "pet", "Snails")):
-            # print('The Old Gold smoker owns snails')
+        if(self.checkSingleHouseRule("smoke", "Old Gold", "pet", "Snails")):
             sum += 1
         else:
             sum -= 1
-        if(self.checkRule("smoke", "Kools", "color", "Yellow")):
-            # print('Kools are smoked in the yellow house.')
+        if(self.checkSingleHouseRule("smoke", "Kools", "color", "Yellow")):
             sum += 1
         else:
             sum -= 1
         if(self.checkRuleForExactHouse(2, "drink", "Milk")):
-            # print('Milk is drunk in the middle house.')
             sum += 1
         else:
             sum -=1
         if(self.checkRuleForExactHouse(0, "nation", "Norwegian")):
-            # print('The Norwegian lives in the first house.')
             sum += 1
         else:
             sum -= 1
         if(self.checkNeighborhoodRules("pet", "Fox", "smoke", "Chesterfield")):
-            # print('The man who smokes Chesterfields lives in the house next to the man with the fox')
             sum += 1
         else:
             sum -=1
         if(self.checkNeighborhoodRules("smoke", "Kools", "pet", "Horse")):
-            # print('Kools are smoked in the house next to the house where the horse is kept.')
             sum += 1
         else:
             sum -= 1
-        if(self.checkRule("smoke", "Lucky Strike", "drink", "Orange juice")):
-            # print('The Lucky Strike smoker drinks orange juice')
+        if(self.checkSingleHouseRule("smoke", "Lucky Strike", "drink", "Orange juice")):
             sum += 1
         else:
             sum -= 1
-        if(self.checkRule("nation", "Japanese", "smoke", "Parliaments")):
-            # print('The Japanese smokes Parliaments.')
+        if(self.checkSingleHouseRule("nation", "Japanese", "smoke", "Parliaments")):
             sum += 1
         else:
             sum -= 1
         if(self.checkNeighborhoodRules("nation", "Norwegian", "color", "Blue")):
-            # print('The Norwegian lives next to the blue house.')
             sum += 1
         else:
             sum -= 1

@@ -25,15 +25,15 @@ class TestSolution(unittest.TestCase):
         s.solution = incorrectSolution
         self.assertEqual(s.getFitnes(), -100.0)
 
-    def test_CheckRule(self):
+    def test_CheckSingleHouseRule(self):
         s = solution()
         s.solution = correctSolution
-        self.assertTrue(s.checkRule('color', 'Yellow', 'nation', 'Norwegian'))
+        self.assertTrue(s.checkSingleHouseRule('color', 'Yellow', 'nation', 'Norwegian'))
 
-    def test_CheckRule_incorect(self):
+    def test_CheckSingleHouseRule_incorect(self):
         s = solution()
         s.solution = incorrectSolution
-        self.assertFalse(s.checkRule('color', 'Yellow', 'drink', 'Coffe'))
+        self.assertFalse(s.checkSingleHouseRule('color', 'Yellow', 'drink', 'Coffe'))
 
     def test_CheckNeighborhoodRules(self):
         s = solution()

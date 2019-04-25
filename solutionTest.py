@@ -63,5 +63,11 @@ class TestSolution(unittest.TestCase):
         reproducedSolution.reproduce(solutionA, solutionB)
         self.assertTrue(reproducedSolution.solution != correctSolution)
 
+    def test_Mutation(self):
+        testSolution = solution()
+        testSolution.solution = correctSolution
+        testSolution.mutate()
+        self.assertTrue(testSolution.solution == correctSolution)
+
 if __name__ == '__main__':
     unittest.main()

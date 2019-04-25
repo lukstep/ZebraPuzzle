@@ -1,5 +1,5 @@
-from utils import generateRandomSolution
-from solution import *
+from utils import randomInt
+from solution import solution
 
 class population(object):
 
@@ -10,7 +10,6 @@ class population(object):
         self.oldPopulation = []
         self.livenes = 200
         for i in range(self.populationSize):
-            s = solution()
             self.newPopulation.append(solution())
         self.newPopulation.sort(key=lambda x: x.getFitnes(), reverse=True)
 

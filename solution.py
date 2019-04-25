@@ -56,6 +56,9 @@ class solution(object):
                         return True
         return False
 
+    def checkRuleForExactHouse(self, house, key, value):
+        return self.solution[house][key] == value
+
     def getFitnes(self):
         if(self.hasTestYet == False):
             self.test()
@@ -98,12 +101,12 @@ class solution(object):
             sum += 1
         else:
             sum -= 1
-        if(self.solution[2]["drink"] == "Milk"):
+        if(self.checkRuleForExactHouse(2, "drink", "Milk")):
             # print('Milk is drunk in the middle house.')
             sum += 1
         else:
             sum -=1
-        if(self.solution[0]["nation"] == "Norwegian"):
+        if(self.checkRuleForExactHouse(0, "nation", "Norwegian")):
             # print('The Norwegian lives in the first house.')
             sum += 1
         else:

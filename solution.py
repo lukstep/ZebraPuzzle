@@ -46,24 +46,12 @@ class solution(object):
         return False
 
     def checkRule2(self, key1, value1, key2, value2):
-        number = 0
         for i in range(0, 5):
             if(self.solution[i][key1] == value1):
                 if(i + 1) % 5 :
                     if(self.solution[(i + 1)][key2] == value2):
                         return True
         return False
-
-    def checkRule3(self, key):
-        valueList = getList(key)
-        for j in valueList:
-            number = 0
-            for i in range(5):
-                if(self.solution[i][key] == j):
-                    number += 1
-            if(number > 1):
-                return False
-        return True
 
     def getFitnes(self):
         if(self.hasTestYet == False):

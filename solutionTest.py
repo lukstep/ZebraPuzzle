@@ -45,16 +45,6 @@ class TestSolution(unittest.TestCase):
         s.solution = incorrectSolution
         self.assertFalse(s.checkRule2('color', 'Yellow', 'color', 'Blue'))
 
-    def test_CheckRule3(self):
-        s = solution()
-        s.solution = correctSolution
-        self.assertTrue(s.checkRule3('color'))
-
-    def test_CheckRule3_incorect(self):
-        s = solution()
-        s.solution = incorrectSolution
-        self.assertFalse(s.checkRule3('color'))
-
     def test_Reproduce(self):
         solutionA = solution()
         solutionB = solution()

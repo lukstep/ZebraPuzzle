@@ -15,12 +15,12 @@ incorrectSolution = [{'color': 'Ivory',  'nation': 'Spaniard',  'drink': 'Milk',
 
 class TestSolution(unittest.TestCase):
 
-    def test_testCorrectSolution(self):
+    def test_CorrectSolution(self):
         s = solution()
         s.solution = correctSolution
         self.assertEqual(s.getFitnes(), 100.0)
 
-    def test_testIncorrectSolution(self):
+    def test_IncorrectSolution(self):
         s = solution()
         s.solution = incorrectSolution
         self.assertEqual(s.getFitnes(), -100.0)

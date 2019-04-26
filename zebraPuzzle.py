@@ -9,7 +9,8 @@ def run():
     for i in range(5):
         p.reproduce()
         best = p.getBestFited()
-        print('Generation: {generation}, best fitness: {fitnes}, average fitness: {avg}'.format(generation=(i + 1), fitnes=best.getFitnes(), avg=p.getAverageFitnes()))
+        print('Generation: {generation}, best fitness: {fitnes}, average fitness: {avg}' \
+            .format(generation=(i + 1), fitnes=best.getFitnes(), avg=p.getAverageFitnes()))
         if(best.getFitnes() >= 100):
             print('Best solution')
             best.toString()

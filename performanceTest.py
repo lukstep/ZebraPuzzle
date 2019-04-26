@@ -27,7 +27,8 @@ def benchmark():
 
     elapsedTime = time.process_time() - startTime
     elapsedPerfTime = time.perf_counter() - startPerfTime
-    print('Test results: time: {time}s, perfTime: {perf}s, stability: {NumberOfSucess}/{ExeNumber}'.format(time=elapsedTime, perf=elapsedPerfTime, NumberOfSucess=NumberOfSucess, ExeNumber=NUMBER_OF_ALGORITM_EXECUTION))
+    print('Test results: time: {time}s, perfTime: {perf}s, stability: {NumberOfSucess}/{ExeNumber}'\
+        .format(time=elapsedTime, perf=elapsedPerfTime, NumberOfSucess=NumberOfSucess, ExeNumber=NUMBER_OF_ALGORITM_EXECUTION))
 
 if __name__ == '__main__':
    benchmark()

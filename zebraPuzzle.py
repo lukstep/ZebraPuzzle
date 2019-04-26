@@ -1,5 +1,4 @@
 #!/usr/bin/env python3
-import sys
 from population import population
 
 def run():
@@ -14,6 +13,9 @@ def run():
         if(best.getFitnes() >= 100):
             print('Best solution')
             best.toString()
-            sys.exit(0)
+            return 0
+    return 1
 
-run()
+if __name__ == '__main__':
+   run()
+

@@ -5,7 +5,6 @@ from solution import solution
 class population(object):
 
     def __init__(self, size):
-        super(population, self).__init__()
         self.populationSize = size
         self.newPopulation = []
         self.oldPopulation = []

@@ -15,6 +15,9 @@ class solution(object):
         self.solution = generateRandomSolution()
         self.fitnes = 0.0
         self.hasTestYet = False
+    
+    def __lt__(self, other):
+        return self.fitnes > other.fitnes
 
     def toString(self):
         for row in self.solution:
@@ -32,6 +35,7 @@ class solution(object):
                 self.solution[j][i] = tempSolution[j][i]
         if(self.isMutationPossible()):
              self.mutate()
+        self.test()
 
     def isMutationPossible(self):
         return randomInt(0, MAX_MUTATION_PROBABILITY) <= MUTATION_PROBABILITY

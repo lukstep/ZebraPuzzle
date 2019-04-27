@@ -2,6 +2,11 @@ from utils import generateRandomSolution
 from utils import lastIndex
 from utils import randomInt
 
+MUTATION_PROBABILITY = 19 #%
+NUMBER_OF_RULES = 14
+NUMBER_OF_HOUSES = 5
+MAX_MUTATION_PROBABILITY = 100
+
 key = ["nation", "color", "drink", "smoke", "pet"]
 
 class solution(object):
@@ -10,10 +15,6 @@ class solution(object):
         self.solution = generateRandomSolution()
         self.fitnes = 0.0
         self.hasTestYet = False
-        self.mutationProbabily = 19 #%
-        self.NUMBER_OF_RULES = 14
-        self.NUMBER_OF_HOUSES = 5
-        self.MAX_MUTATION_PROBABILITY = 100
 
     def toString(self):
         for row in self.solution:
@@ -23,7 +24,7 @@ class solution(object):
     def reproduce(self, partnerA, partnerB):
         for i in key:
             pivot = randomInt(0, 100)
-            for j in range(0, self.NUMBER_OF_HOUSES):
+            for j in range(0, NUMBER_OF_HOUSES):
                 if(pivot < 50):
                     tempSolution = partnerA.getSolutionTab()
                 else:
@@ -33,7 +34,7 @@ class solution(object):
              self.mutate()
 
     def isMutationPossible(self):
-        return randomInt(0, self.MAX_MUTATION_PROBABILITY) <= self.mutationProbabily
+        return randomInt(0, MAX_MUTATION_PROBABILITY) <= MUTATION_PROBABILITY
 
     def mutate(self):
         tempValueIndex = randomInt(0, lastIndex(key))
@@ -112,7 +113,7 @@ class solution(object):
         else:
             sum -= 1
 
-        self.fitnes = round((sum / self.NUMBER_OF_RULES) * 100, 3)
+        self.fitnes = round((sum / NUMBER_OF_RULES) * 100, 3)
         self.hasTestYet = True
 
     def checkSingleHouseRule(self, key1, value1, key2, value2):
@@ -122,9 +123,9 @@ class solution(object):
         return False
 
     def checkNeighborhoodRules(self, House1_key, House1_value, House2_key, House2_value):
-        for i in range(0, self.NUMBER_OF_HOUSES):
+        for i in range(0, NUMBER_OF_HOUSES):
             if(self.solution[i][House1_key] == House1_value):
-                if(i + 1) % self.NUMBER_OF_HOUSES:
+                if(i + 1) % NUMBER_OF_HOUSES:
                     if(self.solution[(i + 1)][House2_key] == House2_value):
                         return True
         return False

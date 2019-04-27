@@ -8,7 +8,7 @@ class population(object):
         self.populationSize = size
         self.newPopulation = []
         self.oldPopulation = []
-        self.livenes = 200
+        self.livenes = 300
         self.initPopulation()
 
     def initPopulation(self):

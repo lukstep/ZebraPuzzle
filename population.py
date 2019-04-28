@@ -21,8 +21,9 @@ class population(object):
         bestFited = []
         self.oldPopulation = []
 
-        while self.newPopulation:
+        for i in range(self.livenes):
             self.oldPopulation.append(heapq.heappop(self.newPopulation))
+        self.newPopulation = []
 
         for i in range(self.livenes):
             for j in range(int(self.oldPopulation[i].getFitnes())):

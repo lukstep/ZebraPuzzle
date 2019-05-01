@@ -1,5 +1,6 @@
 import unittest
-from solution import solution
+from unittest.mock import MagicMock
+from solution import Solution
 
 correctSolution = [{'color': 'Yellow', 'nation': 'Norwegian',  'drink': 'Water',        'smoke': 'Kools',         'pet': 'Fox'},
                    {'color': 'Blue',   'nation': 'Ukrainian',  'drink': 'Tea',          'smoke': 'Chesterfield',  'pet': 'Horse'},
@@ -16,55 +17,55 @@ incorrectSolution = [{'color': 'Ivory',  'nation': 'Spaniard',  'drink': 'Milk',
 class TestSolution(unittest.TestCase):
 
     def test_CorrectSolution(self):
-        s = solution()
+        s = Solution()
         s.solution = correctSolution
-        self.assertEqual(s.getFitnes(), 100.0)
+        self.assertEqual(s.getFitness(), 100.0)
 
     def test_IncorrectSolution(self):
-        s = solution()
+        s = Solution()
         s.solution = incorrectSolution
-        self.assertEqual(s.getFitnes(), -100.0)
+        self.assertEqual(s.getFitness(), -100.0)
 
     def test_CheckSingleHouseRule(self):
-        s = solution()
+        s = Solution()
         s.solution = correctSolution
         self.assertTrue(s.checkSingleHouseRule('color', 'Yellow', 'nation', 'Norwegian'))
 
     def test_CheckSingleHouseRule_incorect(self):
-        s = solution()
+        s = Solution()
         s.solution = incorrectSolution
         self.assertFalse(s.checkSingleHouseRule('color', 'Yellow', 'drink', 'Coffe'))
 
     def test_CheckNeighborhoodRules(self):
-        s = solution()
+        s = Solution()
         s.solution = correctSolution
         self.assertTrue(s.checkNeighborhoodRules('color', 'Yellow', 'color', 'Blue'))
 
     def test_CheckNeighborhoodRules_incorect(self):
-        s = solution()
+        s = Solution()
         s.solution = incorrectSolution
         self.assertFalse(s.checkNeighborhoodRules('color', 'Yellow', 'color', 'Blue'))
 
     def test_Reproduce(self):
-        solutionA = solution()
-        solutionB = solution()
+        solutionA = Solution()
+        solutionB = Solution()
         solutionA.solution = solutionB.solution = correctSolution
-        reproducedSolution = solution()
-        reproducedSolution.mutationProbabily = 0
-        reproducedSolution.reproduce(solutionA, solutionB)
+        reproducedSolution = Solution()
+        reproducedSolution.isMutationPossible = MagicMock(return_value=False)
+        reproducedSolution(solutionA, solutionB)
         self.assertEqual(reproducedSolution.solution, correctSolution)
 
     def test_ReproduceNo(self):
-        solutionA = solution()
-        solutionB = solution()
+        solutionA = Solution()
+        solutionB = Solution()
         solutionA.solution = solutionB.solution = correctSolution
-        reproducedSolution = solution()
-        reproducedSolution.mutationProbabily = 1000
-        reproducedSolution.reproduce(solutionA, solutionB)
+        reproducedSolution = Solution()
+        reproducedSolution.isMutationPossible = MagicMock(return_value=True)
+        reproducedSolution(solutionA, solutionB)
         self.assertTrue(reproducedSolution.solution != correctSolution)
 
     def test_Mutation(self):
-        testSolution = solution()
+        testSolution = Solution()
         testSolution.solution = correctSolution
         testSolution.mutate()
         self.assertTrue(testSolution.solution == correctSolution)

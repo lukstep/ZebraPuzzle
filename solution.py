@@ -2,38 +2,49 @@ from utils import generateRandomSolution
 from utils import lastIndex
 from utils import randomInt
 
+MUTATION_PROBABILITY = 19 #%
+NUMBER_OF_RULES = 14
+NUMBER_OF_HOUSES = 5
+MAX_MUTATION_PROBABILITY = 100
+
 key = ["nation", "color", "drink", "smoke", "pet"]
 
-class solution(object):
-
+class Solution(object):
     def __init__(self):
         self.solution = generateRandomSolution()
-        self.fitnes = 0.0
+        self.fitness = 0.0
         self.hasTestYet = False
-        self.mutationProbabily = 19 #%
-        self.NUMBER_OF_RULES = 14
-        self.NUMBER_OF_HOUSES = 5
-        self.MAX_MUTATION_PROBABILITY = 100
+    
+    def __lt__(self, other):
+        return self.getFitness() > other.getFitness()
 
-    def toString(self):
+    def __int__(self):
+        return int(self.getFitness())
+    
+    def __float__(self):
+        return self.getFitness()
+
+    def __str__(self):
+        string = str('Fitness:{fitness} \n'.format(fitness=self.getFitness()))
         for row in self.solution:
-            print(row)
-        print('Fitness {fitness}'.format(fitness=self.fitnes))
+            string += str('{}\n'.format(row))
+        return string
 
-    def reproduce(self, partnerA, partnerB):
+    def __call__(self, partnerA, partnerB):
         for i in key:
             pivot = randomInt(0, 100)
-            for j in range(0, self.NUMBER_OF_HOUSES):
+            for j in range(0, NUMBER_OF_HOUSES):
                 if(pivot < 50):
-                    tempSolution = partnerA.getSolutionTab()
+                    tempSolution = partnerA.solution
                 else:
-                    tempSolution = partnerB.getSolutionTab()
+                    tempSolution = partnerB.solution
                 self.solution[j][i] = tempSolution[j][i]
         if(self.isMutationPossible()):
              self.mutate()
+        self.test()
 
     def isMutationPossible(self):
-        return randomInt(0, self.MAX_MUTATION_PROBABILITY) <= self.mutationProbabily
+        return randomInt(0, MAX_MUTATION_PROBABILITY) <= MUTATION_PROBABILITY
 
     def mutate(self):
         tempValueIndex = randomInt(0, lastIndex(key))
@@ -48,10 +59,10 @@ class solution(object):
             self.solution[newIndex][keyToMutate] = tempValue
             return True
 
-    def getFitnes(self):
+    def getFitness(self):
         if(self.hasTestYet == False):
             self.test()
-        return self.fitnes
+        return self.fitness
 
     def test(self):
         sum = 0
@@ -112,7 +123,7 @@ class solution(object):
         else:
             sum -= 1
 
-        self.fitnes = round((sum / self.NUMBER_OF_RULES) * 100, 3)
+        self.fitness = round((sum / NUMBER_OF_RULES) * 100, 3)
         self.hasTestYet = True
 
     def checkSingleHouseRule(self, key1, value1, key2, value2):
@@ -122,9 +133,9 @@ class solution(object):
         return False
 
     def checkNeighborhoodRules(self, House1_key, House1_value, House2_key, House2_value):
-        for i in range(0, self.NUMBER_OF_HOUSES):
+        for i in range(0, NUMBER_OF_HOUSES):
             if(self.solution[i][House1_key] == House1_value):
-                if(i + 1) % self.NUMBER_OF_HOUSES:
+                if(i + 1) % NUMBER_OF_HOUSES:
                     if(self.solution[(i + 1)][House2_key] == House2_value):
                         return True
         return False
@@ -132,5 +143,3 @@ class solution(object):
     def checkRuleForExactHouse(self, house, key, value):
         return self.solution[house][key] == value
 
-    def getSolutionTab(self):
-        return self.solution

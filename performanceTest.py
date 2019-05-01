@@ -8,7 +8,7 @@ POPULATION_SIZE = 100000
 
 def runAlgorithm(populationSize):
     p = population(populationSize)
-    for i in range(NUMBER_OF_GENERATIONS):
+    for _ in range(NUMBER_OF_GENERATIONS):
         p.reproduce()
         best = p.getBestFited()
         if(best.getFitnes() >= 100):
@@ -21,7 +21,7 @@ def benchmark():
     startTime = time.process_time()
     startPerfTime = time.perf_counter()
 
-    for i in range(NUMBER_OF_ALGORITM_EXECUTION):
+    for _ in range(NUMBER_OF_ALGORITM_EXECUTION):
         if(runAlgorithm(POPULATION_SIZE)):
             NumberOfSucess += 1
 

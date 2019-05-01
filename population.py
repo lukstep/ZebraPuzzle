@@ -12,7 +12,7 @@ class population(object):
         self.initPopulation()
 
     def initPopulation(self):
-        for i in range(self.populationSize):
+        for _ in range(self.populationSize):
             s = solution()
             s.test()
             heapq.heappush(self.newPopulation, s)
@@ -26,7 +26,7 @@ class population(object):
         self.newPopulation = []
 
         for i in range(self.livenes):
-            for j in range(int(self.oldPopulation[i].getFitnes())):
+            for _ in range(int(self.oldPopulation[i].getFitnes())):
                 bestFited.append(i)
     
         for i in range(0, self.populationSize):

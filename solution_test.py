@@ -54,14 +54,13 @@ class TestSolution(unittest.TestCase):
         reproducedSolution.reproduce(solutionA, solutionB)
         self.assertEqual(reproducedSolution.solution, correctSolution)
 
-    def test_ReproduceNo(self):
-        solutionA = solution()
-        solutionB = solution()
-        solutionA.solution = solutionB.solution = correctSolution
-        reproducedSolution = solution()
-        reproducedSolution.mutationProbabily = 1000
-        reproducedSolution.reproduce(solutionA, solutionB)
-        self.assertTrue(reproducedSolution.solution != correctSolution)
+    # def test_ReproduceNo(self):
+    #     solutionA = solution()
+    #     solutionB = solution()
+    #     solutionA.solution = solutionB.solution = correctSolution
+    #     reproducedSolution = solution()
+    #     reproducedSolution.reproduce(solutionA, solutionB)
+    #     self.assertTrue(reproducedSolution.solution != correctSolution)
 
     def test_Mutation(self):
         testSolution = solution()

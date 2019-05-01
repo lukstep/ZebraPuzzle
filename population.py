@@ -1,23 +1,28 @@
 import heapq
 from utils import randomInt
-from solution import solution
+from solution import Solution
 
-class population(object):
-
+class Population(object):
     def __init__(self, size):
         self.populationSize = size
         self.newPopulation = []
         self.oldPopulation = []
         self.livenes = 1000
+        self.genration = 0
         self.initPopulation()
+
+    def __len__(self):
+        return self.populationSize
+
+    def __str__(self):
+        return str('Generation:{generation}, best fitness:{fitnes}, average fitness:{avg}' \
+            .format(generation=self.genration, fitnes=float(self.newPopulation[0]), avg=self.getAverageFitnes()))
 
     def initPopulation(self):
         for _ in range(self.populationSize):
-            s = solution()
-            s.test()
-            heapq.heappush(self.newPopulation, s)
+            heapq.heappush(self.newPopulation, Solution())
 
-    def reproduce(self):
+    def __call__(self):
         bestFited = []
         self.oldPopulation = []
 
@@ -26,7 +31,7 @@ class population(object):
         self.newPopulation = []
 
         for i in range(self.livenes):
-            for _ in range(int(self.oldPopulation[i].getFitnes())):
+            for _ in range(int(self.oldPopulation[i])):
                 bestFited.append(i)
     
         for i in range(0, self.populationSize):
@@ -35,16 +40,16 @@ class population(object):
             while indexA == indexB:
                 indexB = bestFited[randomInt(0, len(bestFited) - 1)]
                 pass
-            s = solution()
-            s.reproduce(self.oldPopulation[indexA], 
-                        self.oldPopulation[indexB])
+            s = Solution()
+            s(self.oldPopulation[indexA], self.oldPopulation[indexB])
             heapq.heappush(self.newPopulation, s)
+        self.genration += 1
 
     def getBestFited(self):
         return self.newPopulation[0]
 
     def getAverageFitnes(self):
         sumFitnes = 0.0
-        for i in self.newPopulation:
-            sumFitnes += i.getFitnes()
+        for solution in self.newPopulation:
+            sumFitnes += float(solution)
         return round(sumFitnes / self.populationSize, 2)

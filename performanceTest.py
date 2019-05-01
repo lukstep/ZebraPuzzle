@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 import time
-from population import population
+from population import Population
 
 NUMBER_OF_GENERATIONS = 5
 NUMBER_OF_ALGORITM_EXECUTION = 10
 POPULATION_SIZE = 100000
 
 def runAlgorithm(populationSize):
-    p = population(populationSize)
+    population = Population(populationSize)
     for _ in range(NUMBER_OF_GENERATIONS):
-        p.reproduce()
-        best = p.getBestFited()
-        if(best.getFitnes() >= 100):
+        population()
+        best = population.getBestFited()
+        if(best.getFitness() >= 100):
             return 1
     return 0
 

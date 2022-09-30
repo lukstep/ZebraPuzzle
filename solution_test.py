@@ -15,7 +15,6 @@ incorrectSolution = [{'color': 'Ivory',  'nation': 'Spaniard',  'drink': 'Milk',
                      {'color': 'Ivory',  'nation': 'Norwegian', 'drink': 'Milk',  'smoke': 'Parliaments', 'pet': 'Fox'}]
 
 class TestSolution(unittest.TestCase):
-
     def test_CorrectSolution(self):
         s = Solution()
         s.solution = correctSolution

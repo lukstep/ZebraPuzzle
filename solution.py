@@ -2,25 +2,26 @@ from utils import generateRandomSolution
 from utils import lastIndex
 from utils import randomInt
 
-MUTATION_PROBABILITY = 19 #%
+MUTATION_PROBABILITY = 19#  %
 NUMBER_OF_RULES = 14
 NUMBER_OF_HOUSES = 5
 MAX_MUTATION_PROBABILITY = 100
 
 key = ["nation", "color", "drink", "smoke", "pet"]
 
+
 class Solution(object):
     def __init__(self):
         self.solution = generateRandomSolution()
         self.fitness = 0.0
         self.hasTestYet = False
-    
+
     def __lt__(self, other):
         return self.getFitness() > other.getFitness()
 
     def __int__(self):
         return int(self.getFitness())
-    
+
     def __float__(self):
         return self.getFitness()
 
@@ -60,7 +61,7 @@ class Solution(object):
             return True
 
     def getFitness(self):
-        if(self.hasTestYet == False):
+        if not self.hasTestYet:
             self.test()
         return self.fitness
 
@@ -97,7 +98,7 @@ class Solution(object):
         if(self.checkRuleForExactHouse(2, "drink", "Milk")):
             sum += 1
         else:
-            sum -=1
+            sum -= 1
         if(self.checkRuleForExactHouse(0, "nation", "Norwegian")):
             sum += 1
         else:
@@ -105,7 +106,7 @@ class Solution(object):
         if(self.checkNeighborhoodRules("pet", "Fox", "smoke", "Chesterfield")):
             sum += 1
         else:
-            sum -=1
+            sum -= 1
         if(self.checkNeighborhoodRules("smoke", "Kools", "pet", "Horse")):
             sum += 1
         else:
@@ -142,4 +143,3 @@ class Solution(object):
 
     def checkRuleForExactHouse(self, house, key, value):
         return self.solution[house][key] == value
-
